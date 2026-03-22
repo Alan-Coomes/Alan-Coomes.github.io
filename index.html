@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alan Coomes — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0a0f1e;
+    --navy2: #111827;
+    --teal: #0ea5a0;
+    --teal-dim: #0ea5a020;
+    --teal-border: #0ea5a040;
+    --cream: #f5f2eb;
+    --muted: #8892a4;
+    --text: #e8eaf0;
+    --text-dim: #c5cad6;
+    --card: #141c2e;
+    --border: #1e2a40;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Figtree', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(10, 15, 30, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  section { padding: 5rem 2.5rem; max-width: 900px; margin: 0 auto; }
+
+  /* HERO */
+  .hero {
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 900px;
+    padding: 0 2.5rem;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--teal);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    max-width: 520px;
+    margin: 1.5rem 0 2.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: #fff;
+  }
+
+  .btn-primary:hover { background: #0c908b; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--teal);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  /* EXPERIENCE */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 140px 1px 1fr;
+    gap: 0 1.5rem;
+    position: relative;
+  }
+
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    padding-top: 0.2rem;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .timeline-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timeline-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+    margin-top: 0.35rem;
+  }
+
+  .timeline-line {
+    flex: 1;
+    width: 1px;
+    background: var(--border);
+    margin: 4px 0;
+  }
+
+  .timeline-item:last-child .timeline-line { display: none; }
+
+  .timeline-content { padding-bottom: 2.5rem; }
+
+  .timeline-role {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+
+  .timeline-company {
+    font-size: 0.82rem;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .timeline-bullets li {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .timeline-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-size: 0.7rem;
+    top: 0.25em;
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .edu-card:hover { border-color: var(--teal-border); }
+
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--teal);
+  }
+
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .edu-school {
+    font-size: 0.82rem;
+    color: var(--teal);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 0.75rem;
+  }
+
+  .edu-detail {
+    font-size: 0.82rem;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .edu-badge {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    background: var(--teal-dim);
+    border: 0.5px solid var(--teal-border);
+    border-radius: 3px;
+    font-size: 0.72rem;
+    font-family: 'DM Mono', monospace;
+    color: var(--teal);
+    letter-spacing: 0.05em;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .skill-group {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .skill-group:hover { border-color: var(--teal-border); }
+
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .skill-tag {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    background: rgba(255,255,255,0.04);
+    border: 0.5px solid var(--border);
+    border-radius: 3px;
+    padding: 0.2rem 0.55rem;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+
+  .contact-item:hover { border-color: var(--teal); }
+
+  .contact-icon {
+    font-size: 1.2rem;
+    color: var(--teal);
+  }
+
+  .contact-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .contact-value {
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2rem 2.5rem;
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .hero { padding: 0 1.25rem; }
+    .edu-grid, .skills-grid, .contact-grid { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 0 1px 1fr; }
+    .timeline-date { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Alan Coomes</span>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Technology Analyst · Systems Engineer · AI Graduate Student</p>
+  <h1>Alan<br><em>Coomes</em></h1>
+  <p class="hero-sub">Building high-availability production systems at scale — from automating network infrastructure for T-Mobile to pursuing an MS in AI at Georgia Tech.</p>
+  <div class="hero-cta">
+    <a href="#experience" class="btn btn-primary">View my work</a>
+    <a href="#contact" class="btn btn-outline">Get in touch</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">99.9%</div>
+      <div class="stat-label">Uptime maintained</div>
+    </div>
+    <div>
+      <div class="stat-num">9+</div>
+      <div class="stat-label">Mission-critical apps</div>
+    </div>
+    <div>
+      <div class="stat-num">4.0</div>
+      <div class="stat-label">GPA at Georgia Tech</div>
+    </div>
+    <div>
+      <div class="stat-num">4+</div>
+      <div class="stat-label">Years at Infosys</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-tag">01 / experience</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-date">Dec 2022 –<br>Present</div>
+      <div class="timeline-track"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-role">Operations Support Analyst</div>
+        <div class="timeline-company">Infosys · T-Mobile</div>
+        <ul class="timeline-bullets">
+          <li>Maintained 99.9% availability across 9+ mission-critical apps supporting nationwide cell-site router configuration</li>
+          <li>Designed Splunk automation dashboards enabling proactive detection, significantly reducing SLA breaches</li>
+          <li>Led weekly technical meetings with upper management and collaborated across dev teams via ServiceNow</li>
+          <li>Managed backend MongoDB clusters and MSSQL databases on Windows Services infrastructure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Mar 2021 –<br>Nov 2022</div>
+      <div class="timeline-track"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-role">Systems Engineer & Technology Analyst</div>
+        <div class="timeline-company">Infosys · T-Mobile</div>
+        <ul class="timeline-bullets">
+          <li>Primary contact for client-facing incident remediation using Splunk and Postman</li>
+          <li>Served as acting team lead, coordinating daily task assignments with project leadership</li>
+          <li>Developed Java Spring Boot and Angular TypeScript apps as part of ServiceNow migration</li>
+          <li>Wrote end-to-end PL/SQL, including root cause analysis, implementation, and production deployment</li>
+          <li>Collaborated with 10+ upstream/downstream teams to resolve complex integration and dataflow issues</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" style="background: linear-gradient(180deg, transparent, rgba(14,165,160,0.04), transparent); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-header">
+      <span class="section-tag">02 / education</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">M.S. Computer Science</div>
+        <div class="edu-school">Georgia Institute of Technology</div>
+        <div class="edu-detail">
+          <span>Specialization: Artificial Intelligence</span>
+          <span>Fall 2025 – Present</span>
+        </div>
+        <div class="edu-badge">4.0 / 4.0 GPA</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">BA Mathematical Finance</div>
+        <div class="edu-school">Concordia College</div>
+        <div class="edu-detail">
+          <span>Moorhead, MN</span>
+          <span>Graduated May 2020</span>
+        </div>
+        <div class="edu-badge">Cum Laude · 3.66 GPA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-tag">03 / skills</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL / PL/SQL</span>
+        <span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Frameworks & APIs</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Spring Boot</span>
+        <span class="skill-tag">Angular</span>
+        <span class="skill-tag">REST APIs</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Databases</div>
+      <div class="skill-tags">
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">MSSQL Server</span>
+        <span class="skill-tag">Oracle</span>
+        <span class="skill-tag">PostgreSQL</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Platform & Ops</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Splunk</span>
+        <span class="skill-tag">ServiceNow</span>
+        <span class="skill-tag">Itential</span>
+        <span class="skill-tag">NSO</span>
+        <span class="skill-tag">Jira</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Windows</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="border-top: 0.5px solid var(--border);">
+  <div class="section-header">
+    <span class="section-tag">04 / contact</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-grid">
+    <a href="mailto:alan.coomes2@gmail.com" class="contact-item">
+      <span class="contact-icon">✉</span>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">alan.coomes2@gmail.com</div>
+      </div>
+    </a>
+    <a href="tel:+13202913081" class="contact-item">
+      <span class="contact-icon">☏</span>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">(320) 291-3081</div>
+      </div>
+    </a>
+    <div class="contact-item" style="cursor: default;">
+      <span class="contact-icon">◎</span>
+      <div>
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Minneapolis, MN</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Alan Coomes · 2025</footer>
+
+</body>
+</html>
